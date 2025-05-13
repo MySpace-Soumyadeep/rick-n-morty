@@ -1,36 +1,64 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Rick and Morty Episode and Character Browser
 
-## Getting Started
+## Description
 
-First, run the development server:
+This web application displays episodes from the Rick and Morty series and the characters within those episodes. It features:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+* **Episode List:** A sidebar with a list of episodes, supporting infinite scrolling.
+* **Character Grid:** A main content area displaying characters. Clicking an episode in the sidebar shows the characters from that episode.
+* **Dynamic Data Fetching:** Fetches episode and character data from the Rick and Morty API.
+* **Error Handling:** Gracefully handles API fetch errors.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Technologies Used
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+* React
+* Tailwind CSS
+* Rick and Morty API
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Setup and Installation
 
-## Learn More
+1.  **Clone the repository:**
 
-To learn more about Next.js, take a look at the following resources:
+    ```bash
+    git clone <repository_url>
+    cd <repository_name>
+    ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+2.  **Install dependencies:**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+    ```bash
+    npm install # or yarn install
+    ```
 
-## Deploy on Vercel
+3.  **Run the application:**
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+    ```bash
+    npm run dev # or yarn dev
+    ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+    The application will be accessible at `http://localhost:3000` (or the port specified in your development environment).
+
+## How to Use
+
+1.  **View Episodes:** The left sidebar displays a list of episodes. Scroll down to load more episodes.
+2.  **View Episode Characters:** Click on an episode in the sidebar to see the characters from that episode displayed in the main content area.
+3.  **View All Characters:** If no episode is selected, all characters are displayed.
+4.  **Unselect Episode:** If an episode is selected, a button will appear to allow you to unselect it and return to the full character list.
+
+## Code Structure
+
+* `src/app/pages.tsx`: The main page component (`HomePage`) that fetches and displays the data. It uses Server Components for initial data fetching and Client Components for interactivity.
+* `components/EpisodeList.tsx`: A Client Component that displays the list of episodes and handles user interaction (scrolling and clicking).
+* `components/CharacterGrid.tsx`: A Client Component that displays the grid of characters.
+* `src/types/episode.ts`: TypeScript type definition for an episode.
+* `src/types/character.ts`: TypeScript type definition for a character.
+
+## Notes
+
+* The application uses the Rick and Morty API (<https://rickandmortyapi.com/>) to fetch data.
+* Error handling is implemented to display a message if the API fails to load data.
+
+## README Usage
+
+* **For Project Users/Visitors:** This README provides instructions on how to get the application running and how to use its features.
+* **For Developers:** This README provides an overview of the application's architecture, technologies used, and code structure, which can be helpful for understanding, debugging, or contributing to the project.
