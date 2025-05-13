@@ -13,6 +13,7 @@ const HomePage = () => {
   const [selectedEpisodeId, setSelectedEpisodeId] = useState<number | null>(null);
   const [fetchError, setFetchError] = useState<string | null>(null);
   const [isLoadingCharacters, setIsLoadingCharacters] = useState(false);
+  const [initialCharacters, setInitialCharacters] = useState<Character[]>([]);
 
   useEffect(() => {
     const fetchInitialData = async () => {
@@ -24,6 +25,7 @@ const HomePage = () => {
         const charactersRes = await fetch('https://rickandmortyapi.com/api/character');
         const charactersData = await charactersRes.json();
         setSelectedEpisodeCharacters(charactersData.results);
+        setInitialCharacters(charactersData?.results)
       } catch (error) {
         console.error("Failed to fetch initial data:", error);
       }
@@ -36,8 +38,13 @@ const HomePage = () => {
     setIsLoadingCharacters(true);
     setFetchError(null);
 
-    try {
-      const episodeRes = await fetch(`https://rickandmortyapi.com/api/episode/${episodeId}`);
+    try { 
+      if(!episodeId){
+        setSelectedEpisodeCharacters(initialCharacters);
+        return
+      }
+      const episodeRes = await fetch(`https://rickandmortyapi.com/api/episode/${episodeId || ""}`);
+      // const episodeRes = await fetch(`https://rickandmortyapi.com/api/episode${episodeId ? `/${episodeId}` : ""}`);
       const episodeData = await episodeRes.json();
       const characterUrls = episodeData.characters;
 
